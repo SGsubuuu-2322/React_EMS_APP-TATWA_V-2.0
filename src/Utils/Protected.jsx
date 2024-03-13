@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
+import Layout from "../Components/Layout";
 
 const Protected = () => {
   const Navigate = useNavigate();
@@ -17,7 +18,13 @@ const Protected = () => {
       setAuth(true);
     }
   }, []);
-  return auth && <Outlet />;
+  return (
+    auth && (
+      <Layout>
+        <Outlet />
+      </Layout>
+    )
+  );
 };
 
 export default Protected;

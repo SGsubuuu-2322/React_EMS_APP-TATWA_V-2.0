@@ -1,7 +1,14 @@
 // import React from 'react'
 
-const Layout = () => {
-  return <div>Layout</div>;
+import Nav from "./Nav";
+
+const Layout = ({ children }) => {
+  return (
+    <div className="w-full h-screen bg-secondarylite flex flex-col">
+      <Nav />
+      {children}
+    </div>
+  );
 };
 
 export default Layout;
