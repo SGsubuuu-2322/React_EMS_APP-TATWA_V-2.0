@@ -1,21 +1,23 @@
 // import React from 'react'
 
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
 
-const Protected = ({ Component }) => {
+const Protected = () => {
   const Navigate = useNavigate();
+  const [auth, setAuth] = useState(false);
   useEffect(() => {
     let login = localStorage.getItem("loggedInUser");
     if (!login) {
+      // console.log("not logged in");
+      setAuth(false);
       Navigate("/login");
+    } else {
+      // console.log("logged in");
+      setAuth(true);
     }
-  });
-  return (
-    <>
-      <Component />
-    </>
-  );
+  }, []);
+  return auth && <Outlet />;
 };
 
 export default Protected;

@@ -12,15 +12,12 @@ const Routing = () => {
         {PublicRoutes.map((val, i) => {
           return <Route key={i} path={val.path} element={<val.element />} />;
         })}
-        {AuthRoutes.map((val, i) => {
-          return (
-            <Route
-              key={i}
-              path={val.path}
-              element={<Protected Component={val.element} />}
-            />
-          );
-        })}
+
+        <Route element={<Protected />}>
+          {AuthRoutes.map((val, i) => {
+            return <Route key={i} path={val.path} element={<val.element />} />;
+          })}
+        </Route>
       </Routes>
     </div>
   );

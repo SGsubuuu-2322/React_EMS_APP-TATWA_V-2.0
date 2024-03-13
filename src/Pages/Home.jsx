@@ -7,11 +7,11 @@ import { UsersContext } from "../Utils/Context";
 
 const Home = () => {
   const { users } = useContext(UsersContext);
-  console.log(users);
+  // console.log(users);
 
   return (
-    <div className="w-full h-full p-6">
-      <div className="home-container bg-secondary w-full h-full  flex flex-col items-center justify-center">
+    <div className="w-full h-[100%] py-5 bg-red-200">
+      <div className="home-container w-full h-full  flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold text-primary mb-3">
           Employees-List:{" "}
         </h1>

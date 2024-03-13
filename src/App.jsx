@@ -5,7 +5,7 @@ import Routing from "./Utils/Routing";
 
 const App = () => {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen bg-secondarylite flex flex-col">
       <Nav />
       <Routing />
     </div>
