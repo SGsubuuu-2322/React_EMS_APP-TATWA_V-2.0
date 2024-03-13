@@ -5,13 +5,15 @@ import { createContext, useState } from "react";
 export const UsersContext = createContext();
 
 const Context = ({ children }) => {
-  const data = localStorage.getItem("allUsers");
-  let allUsers = [];
-  data !== null ? (allUsers = JSON.parse(data)) : (allUsers = []);
+  const [users, setUsers] = useState(
+    JSON.parse(localStorage.getItem("allUsers")) || []
+  );
 
-  const [users, setUsers] = useState(allUsers);
+  const RefreshUsers = () => {
+    setUsers(JSON.parse(localStorage.getItem("allUsers")) || []);
+  };
   return (
-    <UsersContext.Provider value={{ users, setUsers }}>
+    <UsersContext.Provider value={{ users, RefreshUsers }}>
       {children}
     </UsersContext.Provider>
   );

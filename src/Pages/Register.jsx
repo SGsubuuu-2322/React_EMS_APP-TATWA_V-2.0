@@ -1,9 +1,12 @@
 // import React from 'react'
 
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { UsersContext } from "../Utils/Context";
 
 const Register = () => {
+  const { RefreshUsers } = useContext(UsersContext);
   const { register, handleSubmit, reset } = useForm();
   const allUsers = localStorage.getItem("allUsers");
   const users = JSON.parse(allUsers);
@@ -18,6 +21,7 @@ const Register = () => {
         if (data.password1 === data.password2) {
           users.push({ ...data, id: Math.floor(Math.random() * 100) });
           localStorage.setItem("allUsers", JSON.stringify(users));
+          RefreshUsers();
           Navigate("/login");
         } else {
           alert("Passwords do not match");
@@ -33,6 +37,7 @@ const Register = () => {
           "allUsers",
           JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
         );
+        RefreshUsers();
         Navigate("/login");
       } else {
         alert("Passwords do not match");

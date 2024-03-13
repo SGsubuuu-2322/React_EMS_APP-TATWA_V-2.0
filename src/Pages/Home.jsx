@@ -10,7 +10,7 @@ const Home = () => {
   // console.log(users);
 
   return (
-    <div className="w-full h-[100%] py-5 bg-red-200">
+    <div className="w-full h-[100%] py-5 bg-secondarylite">
       <div className="home-container w-full h-full  flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold text-primary mb-3">
           Employees-List:{" "}
@@ -21,7 +21,7 @@ const Home = () => {
               <Link
                 to={`user-profile/${user.id}`}
                 key={index}
-                className="w-full h-4/12 p-2 bg-secondary mb-2 flex justify-between text-primary text-xl font-medium hover:bg-zinc-300"
+                className="w-full h-4/12 p-2 bg-secondary mb-2 flex justify-between text-primary text-xl font-medium hover:bg-zinc-300 hover:text-secondary"
               >
                 {`${user.name}`}{" "}
                 <span className="font-normal">{user.Designation}</span>
