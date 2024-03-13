@@ -10,22 +10,29 @@ const Register = () => {
   const Navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const user = users.find((user) => user.email === data.email);
-    if (user === undefined) {
-      if (data.password1 === data.password2) {
-        if (allUsers === null) {
-          localStorage.setItem("allUsers", JSON.stringify([data]));
-          Navigate("/login");
-        } else {
+    if (users !== null) {
+      const user = users.find((user) => user.email === data.email);
+
+      if (user === null) {
+        if (data.password1 === data.password2) {
           users.push(data);
           localStorage.setItem("allUsers", JSON.stringify(users));
           Navigate("/login");
+        } else {
+          alert("Passwords do not match");
         }
+      } else {
+        alert(
+          "User already exists with this email address. Try With new one..."
+        );
+      }
+    } else {
+      if (data.password1 === data.password2) {
+        localStorage.setItem("allUsers", JSON.stringify([data]));
+        Navigate("/login");
       } else {
         alert("Passwords do not match");
       }
-    } else {
-      alert("User already exists");
     }
 
     reset();

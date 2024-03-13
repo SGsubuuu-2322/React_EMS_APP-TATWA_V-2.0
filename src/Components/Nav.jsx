@@ -1,5 +1,7 @@
 // import React from 'react'
 
+import { Link } from "react-router-dom";
+
 const Nav = () => {
   return (
     <div className="w-full h-[18%] px-6 py-2">
@@ -17,18 +19,30 @@ const Nav = () => {
 
         <div className="navigation">
           <ul className="flex gap-20">
-            <li className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all">
+            <Link
+              to="/"
+              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+            >
               Home
-            </li>
-            <li className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all">
+            </Link>
+            <Link
+              to="/user-profile"
+              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+            >
               About
-            </li>
-            <li className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all">
+            </Link>
+            <Link
+              to="/register"
+              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+            >
               Register
-            </li>
-            <li className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all">
+            </Link>
+            <Link
+              to="login"
+              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+            >
               Login
-            </li>
+            </Link>
           </ul>
         </div>
       </div>
