@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
   return (
     <div className="w-full h-[18%] px-6 py-2">
       <div className="content bg-secondarylite w-full h-full bg-zinc-100 flex items-center justify-between px-3 overflow-y-hidden">
@@ -25,6 +26,7 @@ const Nav = () => {
             >
               Home
             </Link>
+
             <Link
               to="/user-profile"
               className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"

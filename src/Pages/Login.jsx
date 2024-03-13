@@ -11,23 +11,27 @@ const Login = () => {
   const loggedInUser = localStorage.getItem("loggedInUser");
   // console.log(users);
   const onSubmit = (data) => {
-    const user = users.find((user) => user.email === data.email);
-    // console.log(user);
-    if (user !== undefined) {
-      if (user.password1 === data.password) {
-        if (loggedInUser === null) {
-          localStorage.setItem("loggedInUser", JSON.stringify(user));
-          Navigate("/");
+    if (users !== null) {
+      const user = users.find((user) => user.email === data.email);
+      if (user !== undefined) {
+        if (user.password1 === data.password) {
+          if (loggedInUser === null) {
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            Navigate("/");
+          } else {
+            localStorage.removeItem("loggedInUser");
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            Navigate("/");
+          }
         } else {
-          localStorage.removeItem("loggedInUser");
-          localStorage.setItem("loggedInUser", JSON.stringify(user));
-          Navigate("/");
+          alert("Your Username/Password is incorrect");
         }
       } else {
-        alert("Your Username/Password is incorrect");
+        alert("Your Username/Password is incorrect...");
       }
     } else {
-      alert("Your Username/Password is incorrect...");
+      alert("You're UNAUTHORIZED , Register yourself first...");
+      Navigate("/register");
     }
     reset();
   };

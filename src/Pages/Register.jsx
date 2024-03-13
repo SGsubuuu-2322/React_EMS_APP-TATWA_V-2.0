@@ -12,10 +12,11 @@ const Register = () => {
   const onSubmit = (data) => {
     if (users !== null) {
       const user = users.find((user) => user.email === data.email);
+      // console.log(user);
 
-      if (user === null) {
+      if (user === undefined || user === null) {
         if (data.password1 === data.password2) {
-          users.push(data);
+          users.push({ ...data, id: Math.floor(Math.random() * 100) });
           localStorage.setItem("allUsers", JSON.stringify(users));
           Navigate("/login");
         } else {
@@ -28,7 +29,10 @@ const Register = () => {
       }
     } else {
       if (data.password1 === data.password2) {
-        localStorage.setItem("allUsers", JSON.stringify([data]));
+        localStorage.setItem(
+          "allUsers",
+          JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
+        );
         Navigate("/login");
       } else {
         alert("Passwords do not match");

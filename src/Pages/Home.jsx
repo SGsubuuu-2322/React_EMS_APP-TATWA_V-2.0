@@ -7,6 +7,7 @@ import { UsersContext } from "../Utils/Context";
 
 const Home = () => {
   const { users } = useContext(UsersContext);
+  console.log(users);
 
   return (
     <div className="w-full h-full p-6">
@@ -22,7 +23,7 @@ const Home = () => {
                 key={index}
                 className="w-full h-4/12 p-2 bg-secondary mb-2 flex justify-between text-primary text-xl font-medium hover:bg-zinc-300"
               >
-                {`${user.name.firstname} ${user.name.lastname}`}{" "}
+                {`${user.name}`}{" "}
                 <span className="font-normal">{user.Designation}</span>
               </Link>
             );
