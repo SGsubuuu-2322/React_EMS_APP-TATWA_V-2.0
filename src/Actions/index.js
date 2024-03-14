@@ -1,3 +1,3 @@
-export const refreshUser = () => ({
+export const refreshUsers = () => ({
   type: "REFRESHUSER",
 });

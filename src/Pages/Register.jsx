@@ -1,12 +1,16 @@
 // import React from 'react'
 
-import { useContext } from "react";
+// import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { UsersContext } from "../Utils/Context";
+// import { UsersContext } from "../Utils/Context";
+import { useDispatch } from "react-redux";
+import { refreshUsers } from "../Actions/index";
 
 const Register = () => {
-  const { RefreshUsers } = useContext(UsersContext);
+  const dispatch = useDispatch();
+  // const myState = useSelector((state) => state.refreshUer);
+  // const { RefreshUsers } = useContext(UsersContext);
   const { register, handleSubmit, reset } = useForm();
   const allUsers = localStorage.getItem("allUsers");
   const users = JSON.parse(allUsers);
@@ -14,14 +18,16 @@ const Register = () => {
 
   const onSubmit = (data) => {
     if (users !== null) {
+      // console.log(users);
+      // console.log(data);
       const user = users.find((user) => user.email === data.email);
-      // console.log(user);
 
       if (user === undefined || user === null) {
         if (data.password1 === data.password2) {
           users.push({ ...data, id: Math.floor(Math.random() * 100) });
           localStorage.setItem("allUsers", JSON.stringify(users));
-          RefreshUsers();
+          // RefreshUsers();
+          dispatch(refreshUsers());
           Navigate("/login");
         } else {
           alert("Passwords do not match");
@@ -37,7 +43,8 @@ const Register = () => {
           "allUsers",
           JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
         );
-        RefreshUsers();
+        // RefreshUsers();
+        dispatch(refreshUsers());
         Navigate("/login");
       } else {
         alert("Passwords do not match");

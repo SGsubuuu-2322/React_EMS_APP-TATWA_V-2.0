@@ -1,12 +1,14 @@
 // import React from 'react'
 
 // import { useState } from "react";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UsersContext } from "../Utils/Context";
+// import { UsersContext } from "../Utils/Context";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const { users } = useContext(UsersContext);
+  // const { users } = useContext(UsersContext);
+  const { allUsers } = useSelector((state) => state.users);
   // console.log(users);
 
   return (
@@ -16,7 +18,7 @@ const Home = () => {
           Employees-List:{" "}
         </h1>
         <ul className="w-1/3 h-1/2 bg-zinc-100 p-3 overflow-x-hidden overflow-y-auto border shadow">
-          {users.map((user, index) => {
+          {allUsers.map((user, index) => {
             return (
               <Link
                 to={`user-profile/${user.id}`}

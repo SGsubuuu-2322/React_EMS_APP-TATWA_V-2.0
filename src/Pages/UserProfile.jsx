@@ -1,11 +1,13 @@
 // import React from 'react'
 
-import { useContext } from "react";
+// import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { UsersContext } from "../Utils/Context";
+// import { UsersContext } from "../Utils/Context";
 
 const UserProfile = () => {
-  const { users } = useContext(UsersContext);
+  // const { users } = useContext(UsersContext);
+  const { allUsers } = useSelector((state) => state.users);
   const Navigate = useNavigate();
   const id = useParams();
   const handleClick = () => {
@@ -18,7 +20,7 @@ const UserProfile = () => {
     Navigate("/login");
   }
 
-  const userData = users.find((user) => user.id === +userId);
+  const userData = allUsers.find((user) => user.id === +userId);
 
   return (
     <div className="w-full h-full bg-secondarylite flex flex-col items-center justify-center">
