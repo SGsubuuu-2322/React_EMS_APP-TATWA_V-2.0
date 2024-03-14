@@ -18,7 +18,7 @@ const PublicNav = () => {
         </div>
 
         <div className="navigation">
-          <ul className="flex gap-20">
+          <ul className="flex gap-10">
             <Link
               to="/login"
               className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
