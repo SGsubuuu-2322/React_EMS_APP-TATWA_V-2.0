@@ -1,8 +1,9 @@
 // import React from 'react'
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const PublicNav = () => {
+  let location = useLocation();
+  // console.log(location);
   return (
     <div className="w-full h-[12%] px-6">
       <div className="content w-full bg-zinc-100 flex items-center justify-between px-3 overflow-y-hidden">
@@ -16,6 +17,33 @@ const PublicNav = () => {
           </div>
           <h1 className="text-sky-900 text-2xl font-bold ">EMS</h1>
         </div>
+
+        {location.pathname === "/register" ? (
+          <div className="button-holder h-20 w-40 bg-secondarylite border rounded-md flex justify-around items-center border-primary border-2 overflow-hidden">
+            <div className="admin-container h-20 w-10 flex flex-col justify-center gap-1">
+              <div className="image h-10 w-10 overflow-hidden rounded-md">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8bzRx2cygbkKX_sFD_E7l6QgVPQG0CuPoAy5hB0zFLQ&s"
+                  alt="admin-image"
+                  className="object-cover "
+                />
+              </div>
+              <input type="radio" name="admin" id="" />
+            </div>
+            <div className="admin-container h-20 w-10 flex flex-col justify-center gap-1">
+              <div className="image h-10 w-10 overflow-hidden rounded-md">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNH7XVix6MP8CRjz3z4QXri_2PwobuRQ9IDExrR4BCjg&s"
+                  alt="admin-image"
+                  className="object-cover "
+                />
+              </div>
+              <input type="radio" name="admin" id="" />
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
 
         <div className="navigation">
           <ul className="flex gap-10">

@@ -11,6 +11,11 @@ export const UserReducer = (state = initialState, action) => {
         allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
       };
     }
+
+    case "USERSELECTOR": {
+      return
+    }
+
     default:
       return state;
   }
