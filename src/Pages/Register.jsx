@@ -56,7 +56,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container w-full flex flex-col items-center justify-center">
+    <div className="register-container w-full h-full flex items-center justify-around">
       <h1 className="text-3xl font-bold text-primary border shadow p-3 rounded-md">
         Registration Form
       </h1>

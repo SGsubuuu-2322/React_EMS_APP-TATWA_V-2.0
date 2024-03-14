@@ -5,8 +5,8 @@ const PublicNav = () => {
   let location = useLocation();
   // console.log(location);
   return (
-    <div className="w-full h-[12%] px-6">
-      <div className="content w-full bg-zinc-100 flex items-center justify-between px-3 overflow-y-hidden">
+    <div className="w-full h-[12%] px-6 mb-6">
+      <div className="content w-full bg-zinc-200 flex items-center justify-between px-3 overflow-y-hidden rounded-lg pb-1 border-primary border-b-4 shadow-md shadow-black ">
         <div className="logo-container flex items-center">
           <div className="img-container h-20 w-20">
             <img
@@ -19,7 +19,7 @@ const PublicNav = () => {
         </div>
 
         {location.pathname === "/register" ? (
-          <div className="button-holder h-20 w-40 bg-secondarylite border rounded-md flex justify-around items-center border-primary border-2 overflow-hidden">
+          <div className="button-holder h-20 w-40 bg-secondarylite border rounded-md flex justify-around items-center  border-2 overflow-hidden">
             <div className="admin-container h-20 w-10 flex flex-col justify-center gap-1">
               <div className="image h-10 w-10 overflow-hidden rounded-md">
                 <img
