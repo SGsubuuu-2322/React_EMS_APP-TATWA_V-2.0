@@ -17,6 +17,7 @@ const Register = () => {
   const Navigate = useNavigate();
 
   const onSubmit = (data) => {
+    // console.log(data);
     if (users !== null) {
       // console.log(users);
       // console.log(data);
@@ -132,6 +133,20 @@ const Register = () => {
             type="password"
             name="password2"
             required
+            className="border w-full mx-auto mb-2"
+          />
+        </div>
+        <div className="input-container flex flex-col">
+          <label htmlFor="name" className="text-xl font-semibold text-primary">
+            User:{" "}
+          </label>
+          <input
+            {...register("user")}
+            type="text"
+            name="user"
+            value={"Employee"}
+            placeholder="Employee"
+            readOnly
             className="border w-full mx-auto mb-2"
           />
         </div>
