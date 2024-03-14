@@ -1,6 +1,6 @@
 const initialState = {
   allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
-  user: false,
+  userType: "E",
 };
 
 export const UserReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ export const UserReducer = (state = initialState, action) => {
     }
 
     case "USERSELECTOR": {
-      return { ...state, user: !state.user };
+      return { ...state, userType: action.payload };
     }
 
     default:

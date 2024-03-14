@@ -1,8 +1,17 @@
-// import React from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { selectUser } from "../Actions";
 
 const PublicNav = () => {
   let location = useLocation();
+  const { userType } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  const handleOptionChange = (e) => {
+    // console.log(e.target.value);
+    dispatch(selectUser(e.target.value));
+
+  };
   // console.log(location);
   return (
     <div className="w-full h-[12%] px-6 mb-6">
@@ -28,7 +37,13 @@ const PublicNav = () => {
                   className="object-cover "
                 />
               </div>
-              <input type="radio" name="admin" id="" />
+              <input
+                type="radio"
+                name="admin"
+                value="A"
+                checked={userType === "A"}
+                onChange={handleOptionChange}
+              />
             </div>
             <div className="admin-container h-20 w-10 flex flex-col justify-center gap-1">
               <div className="image h-10 w-10 overflow-hidden rounded-md">
@@ -38,7 +53,13 @@ const PublicNav = () => {
                   className="object-cover "
                 />
               </div>
-              <input type="radio" name="admin" id="" />
+              <input
+                type="radio"
+                name="employee"
+                value="E"
+                checked={userType === "E"}
+                onChange={handleOptionChange}
+              />
             </div>
           </div>
         ) : (
