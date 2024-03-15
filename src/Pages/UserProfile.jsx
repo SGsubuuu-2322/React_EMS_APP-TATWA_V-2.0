@@ -25,7 +25,7 @@ const UserProfile = () => {
 
   return (
     <div className="w-full h-full bg-secondarylite flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-semibold text-primary mb-5">
+      <h1 className="text-2xl font-semibold text-primary mb-3">
         User_Profile: {userData.userType}
       </h1>
       <div className="user-card w-1/2 bg-secondary border shadow p-6 rounded-md">
@@ -69,7 +69,7 @@ const UserProfile = () => {
       </div>
       <button
         onClick={handleClick}
-        className="px-2 py-2 border shadow bg-secondary text-primary rounded-lg mt-4"
+        className="px-2 py-2 border shadow bg-secondary text-primary rounded-lg mt-1"
       >
         Go Back
       </button>
