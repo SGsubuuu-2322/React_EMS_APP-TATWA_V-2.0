@@ -2,7 +2,7 @@
 import { IoIosCloseCircle } from "react-icons/io";
 // import { useState } from "react";
 // import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // import { UsersContext } from "../Utils/Context";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUsers } from "../Actions";
@@ -41,7 +41,7 @@ const Home = () => {
                   className="list w-full h-4/12 p-2 bg-secondary mb-2 flex justify-between items-center text-primary text-xl font-medium hover:bg-zinc-300 hover:text-secondary"
                 >
                   <div className="user-details">
-                    <Link
+                    <NavLink
                       className="flex flex-col"
                       to={`user-profile/${user.id}`}
                     >
@@ -49,7 +49,7 @@ const Home = () => {
                       <span className="font-normal font-style: italic">
                         {user.userType}
                       </span>
-                    </Link>
+                    </NavLink>
                   </div>
 
                   {loggedInUser.userType === "Admin" &&
