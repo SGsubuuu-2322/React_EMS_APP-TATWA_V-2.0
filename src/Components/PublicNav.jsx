@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { selectUser } from "../Actions";
 
 const PublicNav = () => {
@@ -67,19 +67,29 @@ const PublicNav = () => {
 
         <div className="navigation">
           <ul className="flex gap-10">
-            <Link
+            <NavLink
               to="/login"
-              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+              className={(e) =>
+                `text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all px-3 py-1 ${
+                  e.isActive &&
+                  "text-primary font-md border border-primary rounded-md"
+                }`
+              }
             >
               Login
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to={"/register"}
-              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+              className={(e) =>
+                `text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all px-3 py-1 ${
+                  e.isActive &&
+                  "text-primary font-md border border-primary  rounded-md"
+                }`
+              }
             >
               Register
-            </Link>
+            </NavLink>
           </ul>
         </div>
       </div>
