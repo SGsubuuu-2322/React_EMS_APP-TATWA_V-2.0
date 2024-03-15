@@ -38,7 +38,11 @@ const Register = () => {
       reset();
       return;
     }
-    storeToLS(allUsers, { ...data, userType: userType });
+    storeToLS(allUsers, {
+      ...data,
+      userType: userType,
+      id: Math.floor(Math.random() * 100),
+    });
     reset();
   };
   const storeToLS = (allUsers, data) => {

@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const UserProfile = () => {
   // const { users } = useContext(UsersContext);
-  const { allUsers, userType } = useSelector((state) => state.users);
+  const { allUsers } = useSelector((state) => state.users);
   const Navigate = useNavigate();
   const id = useParams();
   const handleClick = () => {
@@ -21,11 +21,12 @@ const UserProfile = () => {
   }
 
   const userData = allUsers.find((user) => user.id === +userId);
+  // console.log(userData);
 
   return (
     <div className="w-full h-full bg-secondarylite flex flex-col items-center justify-center">
       <h1 className="text-2xl font-semibold text-primary mb-5">
-        User_Profile: {userType}
+        User_Profile: {userData.userType}
       </h1>
       <div className="user-card w-1/2 bg-secondary border shadow p-6 rounded-md">
         <div className="w-full h-1/4">
