@@ -17,38 +17,79 @@ const Register = () => {
   const Navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // console.log(data);
-    if (users !== null) {
-      // console.log(users);
-      // console.log(data);
-      const user = users.find((user) => user.email === data.email);
+    const { secretKey } = data;
 
-      if (user === undefined || user === null) {
+    if (userType === "Admin") {
+      if (+secretKey === 2322) {
+        if (users !== null) {
+          // console.log(users);
+          // console.log(data);
+          const user = users.find((user) => user.email === data.email);
+
+          if (user === undefined || user === null) {
+            if (data.password1 === data.password2) {
+              users.push({ ...data, id: Math.floor(Math.random() * 100) });
+              localStorage.setItem("allUsers", JSON.stringify(users));
+              // RefreshUsers();
+              dispatch(refreshUsers());
+              Navigate("/login");
+            } else {
+              alert("Passwords do not match");
+            }
+          } else {
+            alert(
+              "User already exists with this email address. Try With new one..."
+            );
+          }
+        } else {
+          if (data.password1 === data.password2) {
+            localStorage.setItem(
+              "allUsers",
+              JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
+            );
+            // RefreshUsers();
+            dispatch(refreshUsers());
+            Navigate("/login");
+          } else {
+            alert("Passwords do not match");
+          }
+        }
+      } else {
+        alert("This is not a valid Secret Key...");
+      }
+    } else {
+      if (users !== null) {
+        // console.log(users);
+        // console.log(data);
+        const user = users.find((user) => user.email === data.email);
+
+        if (user === undefined || user === null) {
+          if (data.password1 === data.password2) {
+            users.push({ ...data, id: Math.floor(Math.random() * 100) });
+            localStorage.setItem("allUsers", JSON.stringify(users));
+            // RefreshUsers();
+            dispatch(refreshUsers());
+            Navigate("/login");
+          } else {
+            alert("Passwords do not match");
+          }
+        } else {
+          alert(
+            "User already exists with this email address. Try With new one..."
+          );
+        }
+      } else {
         if (data.password1 === data.password2) {
-          users.push({ ...data, id: Math.floor(Math.random() * 100) });
-          localStorage.setItem("allUsers", JSON.stringify(users));
+          localStorage.setItem(
+            "allUsers",
+            JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
+          );
           // RefreshUsers();
           dispatch(refreshUsers());
           Navigate("/login");
         } else {
           alert("Passwords do not match");
         }
-      } else {
-        alert(
-          "User already exists with this email address. Try With new one..."
-        );
-      }
-    } else {
-      if (data.password1 === data.password2) {
-        localStorage.setItem(
-          "allUsers",
-          JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
-        );
-        // RefreshUsers();
-        dispatch(refreshUsers());
-        Navigate("/login");
-      } else {
-        alert("Passwords do not match");
       }
     }
 
@@ -153,9 +194,9 @@ const Register = () => {
               Admin Code:{" "}
             </label>
             <input
-              {...register("username")}
-              type="text"
-              name="username"
+              {...register("secretKey")}
+              type="number"
+              name="secretKey"
               placeholder="Enter your secret-key..."
               required
               className="border w-full mx-auto mb-2"
