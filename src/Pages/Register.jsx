@@ -12,88 +12,46 @@ const Register = () => {
   const { userType } = useSelector((state) => state.users);
   // const { RefreshUsers } = useContext(UsersContext);
   const { register, handleSubmit, reset } = useForm();
-  const allUsers = localStorage.getItem("allUsers");
-  const users = JSON.parse(allUsers);
   const Navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const { secretKey } = data;
-
-    if (userType === "Admin") {
-      if (+secretKey === 2322) {
-        if (users !== null) {
-          // console.log(users);
-          // console.log(data);
-          const user = users.find((user) => user.email === data.email);
-
-          if (user === undefined || user === null) {
-            if (data.password1 === data.password2) {
-              users.push({ ...data, id: Math.floor(Math.random() * 100) });
-              localStorage.setItem("allUsers", JSON.stringify(users));
-              // RefreshUsers();
-              dispatch(refreshUsers());
-              Navigate("/login");
-            } else {
-              alert("Passwords do not match");
-            }
-          } else {
-            alert(
-              "User already exists with this email address. Try With new one..."
-            );
-          }
-        } else {
-          if (data.password1 === data.password2) {
-            localStorage.setItem(
-              "allUsers",
-              JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
-            );
-            // RefreshUsers();
-            dispatch(refreshUsers());
-            Navigate("/login");
-          } else {
-            alert("Passwords do not match");
-          }
-        }
-      } else {
-        alert("This is not a valid Secret Key...");
-      }
-    } else {
-      if (users !== null) {
-        // console.log(users);
-        // console.log(data);
-        const user = users.find((user) => user.email === data.email);
-
-        if (user === undefined || user === null) {
-          if (data.password1 === data.password2) {
-            users.push({ ...data, id: Math.floor(Math.random() * 100) });
-            localStorage.setItem("allUsers", JSON.stringify(users));
-            // RefreshUsers();
-            dispatch(refreshUsers());
-            Navigate("/login");
-          } else {
-            alert("Passwords do not match");
-          }
-        } else {
-          alert(
-            "User already exists with this email address. Try With new one..."
-          );
-        }
-      } else {
-        if (data.password1 === data.password2) {
-          localStorage.setItem(
-            "allUsers",
-            JSON.stringify([{ ...data, id: Math.floor(Math.random() * 100) }])
-          );
-          // RefreshUsers();
-          dispatch(refreshUsers());
-          Navigate("/login");
-        } else {
-          alert("Passwords do not match");
-        }
-      }
+    const { secretKey, email } = data;
+    const allUsers = JSON.parse(localStorage.getItem("allUsers")) || null;
+    // check for existing
+    if (
+      allUsers &&
+      allUsers.length > 0 &&
+      allUsers.filter((val) => val.email === email).length > 0
+    ) {
+      alert("User Already Exists");
+      reset();
+      return;
     }
 
+    if (userType === "Admin" && +secretKey !== 2322) {
+      alert("Invalid Secret key.");
+      reset();
+      return;
+    }
+    if (data.password1 !== data.password2) {
+      alert("Confirm Password is not matched.");
+      reset();
+      return;
+    }
+    storeToLS(allUsers, { ...data, userType: userType });
     reset();
+  };
+  const storeToLS = (allUsers, data) => {
+    let users = [];
+    if (allUsers && allUsers.length > 0) {
+      users = [...allUsers, data];
+    } else {
+      users = [data];
+    }
+    // console.log(data);
+    localStorage.setItem("allUsers", JSON.stringify(users));
+    dispatch(refreshUsers());
+    Navigate("/login");
   };
 
   return (
@@ -176,10 +134,10 @@ const Register = () => {
             User:{" "}
           </label>
           <input
-            {...register("user")}
+            {...register("userType")}
             type="text"
-            name="user"
-            value={userType}
+            name="userType"
+            // value={userType}
             placeholder={userType}
             readOnly
             className="border w-full mx-auto mb-2"
