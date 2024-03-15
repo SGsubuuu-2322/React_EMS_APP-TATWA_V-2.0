@@ -1,6 +1,6 @@
 const initialState = {
   allUsers: JSON.parse(localStorage.getItem("allUsers")) || [],
-  userType: "E",
+  userType: "Employee",
 };
 
 export const UserReducer = (state = initialState, action) => {

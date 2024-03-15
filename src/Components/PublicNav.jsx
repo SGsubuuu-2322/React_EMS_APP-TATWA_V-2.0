@@ -10,7 +10,6 @@ const PublicNav = () => {
   const handleOptionChange = (e) => {
     // console.log(e.target.value);
     dispatch(selectUser(e.target.value));
-
   };
   // console.log(location);
   return (
@@ -40,8 +39,8 @@ const PublicNav = () => {
               <input
                 type="radio"
                 name="admin"
-                value="A"
-                checked={userType === "A"}
+                value="Admin"
+                checked={userType === "Admin"}
                 onChange={handleOptionChange}
               />
             </div>
@@ -56,8 +55,8 @@ const PublicNav = () => {
               <input
                 type="radio"
                 name="employee"
-                value="E"
-                checked={userType === "E"}
+                value="Employee"
+                checked={userType === "Employee"}
                 onChange={handleOptionChange}
               />
             </div>
