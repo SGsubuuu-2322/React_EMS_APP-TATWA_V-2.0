@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Nav = () => {
   const Navigate = useNavigate();
@@ -13,8 +13,8 @@ const Nav = () => {
   };
   // const loggedInUser = localStorage.getItem("loggedInUser");
   return (
-    <div className="w-full h-[12%] px-6">
-      <div className="content w-full bg-zinc-100 flex items-center justify-between px-3 overflow-y-hidden">
+    <div className="w-full h-[12%] px-6 mb-5">
+      <div className="content w-full bg-zinc-100 flex items-center justify-between px-3 overflow-y-hidden rounded-lg pb-1 border-primary border-b-4 shadow-md shadow-black">
         <div className="logo-container flex items-center">
           <div className="img-container h-20 w-20">
             <img
@@ -28,19 +28,29 @@ const Nav = () => {
 
         <div className="navigation">
           <ul className="flex gap-20">
-            <Link
+            <NavLink
               to="/"
-              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+              className={(e) =>
+                `text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all px-3 py-1 ${
+                  e.isActive &&
+                  "text-primary font-md border border-primary rounded-md"
+                }`
+              }
             >
               Home
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to={`/user-profile/${user.id}`}
-              className="text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all"
+              className={(e) =>
+                `text-xl font-medium hover:underline hover:underline-offset-4 hover:text-primary text-xl font-semibold hover:transition-all px-3 py-1 ${
+                  e.isActive &&
+                  "text-primary font-md border border-primary rounded-md"
+                }`
+              }
             >
               About
-            </Link>
+            </NavLink>
             <button
               onClick={logout}
               className="px-3 py-2 bg-primary rounded-lg shadow font-semibold hover:bg-secondary hover:text-secondarylite"
