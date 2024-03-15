@@ -1,14 +1,28 @@
 // import React from 'react'
-
+import { IoIosCloseCircle } from "react-icons/io";
 // import { useState } from "react";
 // import { useContext } from "react";
 import { Link } from "react-router-dom";
 // import { UsersContext } from "../Utils/Context";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUsers } from "../Actions";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   // const { users } = useContext(UsersContext);
   const { allUsers } = useSelector((state) => state.users);
+
+  const handleDeletionClick = (id) => {
+    // console.log(index);
+    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+    localStorage.setItem(
+      "allUsers",
+      JSON.stringify(allUsers.filter((val) => val.id !== id))
+    );
+    dispatch(refreshUsers());
+    // window.location.reload();
+  };
   // console.log(users);
 
   return (
@@ -17,19 +31,37 @@ const Home = () => {
         <h1 className="text-2xl font-bold text-primary mb-3">
           Employees-List:{" "}
         </h1>
-        <ul className="w-1/3 h-1/2 bg-zinc-100 p-3 overflow-x-hidden overflow-y-auto border shadow">
-          {allUsers.map((user, index) => {
-            return (
-              <Link
-                to={`user-profile/${user.id}`}
-                key={index}
-                className="w-full h-4/12 p-2 bg-secondary mb-2 flex justify-between text-primary text-xl font-medium hover:bg-zinc-300 hover:text-secondary"
-              >
-                {`${user.name}`}{" "}
-                <span className="font-normal">{user.Designation}</span>
-              </Link>
-            );
-          })}
+        <ul className="w-1/3 h-1/2 bg-zinc-100 p-3 overflow-x-hidden overflow-y-auto border shadow rounded-lg border-primary">
+          {allUsers
+            .filter((val) => val.email !== loggedInUser.email)
+            .map((user, index) => {
+              return (
+                <div
+                  key={index}
+                  className="list w-full h-4/12 p-2 bg-secondary mb-2 flex justify-between items-center text-primary text-xl font-medium hover:bg-zinc-300 hover:text-secondary"
+                >
+                  <div className="user-details">
+                    <Link
+                      className="flex flex-col"
+                      to={`user-profile/${user.id}`}
+                    >
+                      <span>{user.name}</span>
+                      <span className="font-normal font-style: italic">
+                        {user.userType}
+                      </span>
+                    </Link>
+                  </div>
+
+                  {loggedInUser.userType === "Admin" &&
+                    user.userType === "Employee" && (
+                      <IoIosCloseCircle
+                        className="cursor-pointer"
+                        onClick={() => handleDeletionClick(user.id)}
+                      />
+                    )}
+                </div>
+              );
+            })}
         </ul>
       </div>
     </div>
