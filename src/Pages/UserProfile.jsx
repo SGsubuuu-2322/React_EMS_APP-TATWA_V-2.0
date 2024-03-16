@@ -1,28 +1,42 @@
 // import React from 'react'
 
 // import { useContext } from "react";
+// This is importing useSelector, useNavigate, and useParams react hooks for using react features in our react component....
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 // import { UsersContext } from "../Utils/Context";
 
+// This is userProfile component which will display the profile of a particular user.
 const UserProfile = () => {
   // const { users } = useContext(UsersContext);
+  // This is extracting allUsers list from redux centralized store for further use...
   const { allUsers } = useSelector((state) => state.users);
+
+  // This is exrtacting Navigation from useNavigate() for navigating between diffrenent pages or routes...
   const Navigate = useNavigate();
+
+  // This is extracting id from useParams() for extracting the id of the user from the URL...
   const id = useParams();
+
+  // This is handling navigation...
   const handleClick = () => {
     Navigate(-1);
   };
 
   const userId = id.id;
 
+  // If there is no userId in the url params then, redirect the user to the login page...
   if (!userId) {
     Navigate("/login");
   }
 
+
+  // Finding the user with respect to the given userId in params...
   const userData = allUsers.find((user) => user.id === +userId);
   // console.log(userData);
 
+
+  // This is jsx for rendering the userProfile component... 
   return (
     <div className="w-full h-full bg-secondarylite flex flex-col items-center justify-center">
       <h1 className="text-2xl font-semibold text-primary mb-3">
