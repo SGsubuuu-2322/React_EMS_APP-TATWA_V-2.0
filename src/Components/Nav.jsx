@@ -1,17 +1,24 @@
 // import React from 'react'
 
+// These are some important functional imports from react-router-dom to navigate our app to different routes...
 import { NavLink, useNavigate } from "react-router-dom";
 
+// This is a navbar functional component that will be used to navigate in protected routes of our app...
 const Nav = () => {
+  //  We are using the useNavigate hook provided by react router dom v6. It allows us to programmatically navigate between routes in our app
   const Navigate = useNavigate();
 
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  const user = JSON.parse(loggedInUser);
+  // We're fetching loggedIn user from the localStorage to ensure loggedIn users identity...
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  // This is a function that will be used to handle the logout functionality of our app...
   const logout = () => {
     Navigate("/login");
     localStorage.removeItem("loggedInUser");
   };
   // const loggedInUser = localStorage.getItem("loggedInUser");
+
+  // This is jsx for our navbar...
   return (
     <div className="w-full h-[12%] px-6 mb-5">
       <div className="content w-full bg-zinc-100 flex items-center justify-between px-3 overflow-y-hidden rounded-lg pb-1 border-primary border-b-4 shadow-md shadow-black">
@@ -28,6 +35,7 @@ const Nav = () => {
 
         <div className="navigation">
           <ul className="flex gap-20">
+            {/* This is NavLink's styling, when it is active... */}
             <NavLink
               to="/"
               className={(e) =>
